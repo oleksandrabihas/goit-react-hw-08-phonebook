@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/354.6c21f455.chunk.js","mappings":"gMAAe,SAASA,IACpB,OAAOC,EAAAA,EAAAA,KAAA,MAAAC,SAAI,qBACf,C","sources":["pages/ErrorPage.js"],"sourcesContent":["export default function ErrorPage() {\n    return <h2>Page is not found</h2>\n}"],"names":["ErrorPage","_jsx","children"],"sourceRoot":""}
