@@ -1,8 +1,8 @@
 export const Contact = ({ contacts, handleDeleteContact }) => {
-  return contacts.map(({ id, name, phone }) => {
+  return contacts.map(({ id, name, number }) => {
     return (
       <li key={id}>
-        {name}: {phone}
+        {name}: {number}
         <button type="button" onClick={() => handleDeleteContact(id)}>
           Delete
         </button>

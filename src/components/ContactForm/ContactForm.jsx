@@ -1,8 +1,8 @@
 import { Form } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
-import { selectContacts } from 'redux/contacts/selectors';
 import toast, { Toaster } from 'react-hot-toast';
+import { selectContacts } from 'redux/contacts/selectors';
 
 export const ContactForm = () => {
   const notify = () =>
@@ -12,7 +12,7 @@ export const ContactForm = () => {
     });
 
   const dispatch = useDispatch();
-  const {items} = useSelector(selectContacts);
+  const { items } = useSelector(selectContacts);
 
   const handleAddContact = e => {
     e.preventDefault();
@@ -26,15 +26,18 @@ export const ContactForm = () => {
       alert(`${name} is already in contacts`);
       return;
     } else {
-      dispatch(addContact({ name, phone }));
-      notify();
+      dispatch(addContact({ name, number: phone }))
+        .unwrap()
+        .then(() => {
+          notify();
+        });
       form.reset();
     }
   };
 
   return (
     <>
-      <Toaster/>
+      <Toaster />
       <Form onSubmit={handleAddContact}>
         <label htmlFor="name">Name</label>
         <input

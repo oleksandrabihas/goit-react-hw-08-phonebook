@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilteredContacts } from 'redux/contacts/selectors';
-import { useEffect } from 'react';
-import { deleteContact, fetchContacts } from 'redux/contacts/operations';
+import { deleteContact } from 'redux/contacts/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { Contact } from 'components/Contact/Contact';
 import { ContactsList } from './ContactList.styled';
+import {
+  selectFilteredContacts,
+} from 'redux/contacts/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
@@ -16,13 +17,12 @@ export const ContactList = () => {
       position: 'top-right',
     });
 
-  useEffect(() => {
-    dispatch(fetchContacts());
-  }, [dispatch]);
-
   const handleDeleteContact = id => {
-    dispatch(deleteContact(id));
+    dispatch(deleteContact(id))
+      .unwrap()
+      .then(() => {
     notify();
+      });
   };
 
   return (
