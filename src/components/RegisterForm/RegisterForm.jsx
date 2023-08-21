@@ -1,35 +1,51 @@
-import { useDispatch } from "react-redux";
-import { register } from "redux/auth/operations";
+import { useDispatch } from 'react-redux';
+import { register } from 'redux/auth/operations';
+import { Formik, Field, Form, ErrorMessage } from 'formik';
+import * as yup from 'yup';
+
+const SignUpSchema = yup.object({
+  name: yup.string().required('Required'),
+  email: yup.string().required('Required'),
+  password: yup.string().required('Required').min(7),
+});
 
 export const RegisterForm = () => {
-  const dispatch = useDispatch()
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    const form = e.target;
+  const dispatch = useDispatch();
+  const handleSubmit = ({ name, email, password }, { resetForm }) => {
     dispatch(
       register({
-        name: form.elements.name.value,
-        email: form.elements.email.value,
-        password: form.elements.password.value,
+        name,
+        email,
+        password,
       })
     );
-   form.reset()
-  }
+  };
+
   return (
-    <form onSubmit={handleSubmit}>
-      <label >
-        Username
-        <input type="text" name="name"/>
-      </label>
-      <label>
-        Email
-        <input type="email" name="email"/>
-      </label>
-      <label >
-        Password
-        <input type="password" name="password"/>
-      </label>
-      <button type='submit'>Sign up</button>
-    </form>
+    <Formik
+      initialValues={{ name: '', email: '', password: '' }}
+      onSubmit={handleSubmit}
+      validationSchema={SignUpSchema}
+    >
+      {({ errors, touched }) => (
+        <Form>
+          <label>
+            Username
+            <Field type="text" name="name" />
+          </label>
+          <label>
+            Email
+            <Field type="email" name="email" />
+          </label>
+          <label>
+            Password
+            <Field type="password" name="password" />
+          </label>
+          <ErrorMessage name='password'
+          component='div'/>
+          <button type="submit">Sign up</button>
+        </Form>
+      )}
+    </Formik>
   );
 };

@@ -5,9 +5,9 @@ const initialState = {
   error: '',
 };
 
- export const handlePending = state => {
+export const handlePending = state => {
   state.isLoading = true;
-     state.error = null;
+  state.error = null;
 };
 
 const handleFulfilled = state => {
@@ -15,9 +15,9 @@ const handleFulfilled = state => {
 };
 
 export const handleRejected = (state, { payload }) => {
-    state.isLoading = false;
-    state.error = payload;
-}
+  state.isLoading = false;
+  state.error = payload;
+};
 
 const rootSlice = createSlice({
   name: 'root',

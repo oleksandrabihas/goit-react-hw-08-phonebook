@@ -27,19 +27,18 @@ const handleFulfilledLogout = (state, action) => {
 };
 
 const handlePendingRefresh = (state, actions) => {
-  state.isRefreshing = true
-}
+  state.isRefreshing = true;
+};
 
 const handleFulfilledRefresh = (state, { payload }) => {
   state.user = payload;
-  state.isAuth = true
-    state.isRefreshing = false;
-
+  state.isAuth = true;
+  state.isRefreshing = false;
 };
 
 const handleRejectedRefresh = (state, action) => {
-      state.isRefreshing = false;
-}
+  state.isRefreshing = false;
+};
 
 const authSlice = createSlice({
   name: 'auth',

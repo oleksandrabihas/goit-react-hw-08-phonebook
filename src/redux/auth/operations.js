@@ -24,6 +24,9 @@ export const register = createAsyncThunk(
       setTokenLocal(data.token);
       return data;
     } catch (error) {
+      if (error.response.status === 400) {
+        return thunkAPI.rejectWithValue('Email or password error');
+      }
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -38,8 +41,10 @@ export const login = createAsyncThunk(
       setTokenLocal(data.token);
       return data;
     } catch (error) {
-      console.log(error.message);
-      return thunkAPI.rejectWithValue(error);
+      if (error.response.status === 400) {
+        return thunkAPI.rejectWithValue('Email or password error');
+      }
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
@@ -47,7 +52,7 @@ export const login = createAsyncThunk(
 export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
   const persistedToken = localStorage.getItem('token');
   if (persistedToken === null || persistedToken === 'null') {
-    return thunkAPI.rejectWithValue('Unable to fetch user');
+    return  thunkAPI.rejectWithValue();
   } else {
     try {
       setAuthHeader(persistedToken);
@@ -58,12 +63,13 @@ export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
       return thunkAPI.rejectWithValue(error.message);
     }
   }
-});
+}
+);
 
 export const logout = createAsyncThunk('auth/logout', async (_, thunkAPI) => {
   try {
-    const { data } = await axios.post('users/logout');
-    console.log(data);
+    const data = await axios.post('users/logout');
+    console.log(data)
     clearAuthHeader();
     setTokenLocal(null);
   } catch (error) {

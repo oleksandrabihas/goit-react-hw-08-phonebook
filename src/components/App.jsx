@@ -8,6 +8,7 @@ import { PrivateRoute } from './PrivateRoute';
 import { refresh } from 'redux/auth/operations';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/selectors';
+import { Toaster } from 'react-hot-toast';
 
 const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
@@ -27,6 +28,7 @@ export const App = () => {
     <>
       <Loader />
       <ErrorNotification />
+      <Toaster/>
       {isRefreshing ? (
         <h2>Refreshing page</h2>
       ) : (

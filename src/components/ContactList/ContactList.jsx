@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { deleteContact } from 'redux/contacts/operations';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { Contact } from 'components/Contact/Contact';
 import { ContactsList } from './ContactList.styled';
 import {
@@ -27,7 +27,7 @@ export const ContactList = () => {
 
   return (
     <ContactsList>
-      <Toaster />
+
       <Contact
         contacts={filteredContacts}
         handleDeleteContact={handleDeleteContact}

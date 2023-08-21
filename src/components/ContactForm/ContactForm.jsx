@@ -1,8 +1,10 @@
-import { Form } from './ContactForm.styled';
+import { StyledForm } from './ContactForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contacts/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { selectContacts } from 'redux/contacts/selectors';
+import { Formik, Field, Form } from 'formik';
+
 
 export const ContactForm = () => {
   const notify = () =>
@@ -38,7 +40,7 @@ export const ContactForm = () => {
   return (
     <>
       <Toaster />
-      <Form onSubmit={handleAddContact}>
+      <StyledForm onSubmit={handleAddContact}>
         <label htmlFor="name">Name</label>
         <input
           id="name"
@@ -58,7 +60,7 @@ export const ContactForm = () => {
           required
         />
         <button>Add contact</button>
-      </Form>
+      </StyledForm>
     </>
   );
 };
