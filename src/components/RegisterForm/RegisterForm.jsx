@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { register } from 'redux/auth/operations';
-import { Formik, Field, Form, ErrorMessage } from 'formik';
+import { Formik, Field, Form } from 'formik';
 import * as yup from 'yup';
 
 const SignUpSchema = yup.object({
@@ -27,25 +27,23 @@ export const RegisterForm = () => {
       onSubmit={handleSubmit}
       validationSchema={SignUpSchema}
     >
-      {({ errors, touched }) => (
-        <Form>
-          <label>
-            Username
-            <Field type="text" name="name" />
-          </label>
-          <label>
-            Email
-            <Field type="email" name="email" />
-          </label>
-          <label>
-            Password
-            <Field type="password" name="password" />
-          </label>
-          <ErrorMessage name='password'
-          component='div'/>
-          <button type="submit">Sign up</button>
-        </Form>
-      )}
+      <Form>
+        <label htmlFor="nameSignUp">Username </label>
+        <Field id="nameSignUp" type="text" name="name" required />
+        <label htmlFor="emailSignUp">Email </label>
+        <Field id="emailSignUp" type="email" name="email" required />
+
+        <label htmlFor="passwordSignUp">Password </label>
+        <Field
+          id="passwordSignUp"
+          type="password"
+          name="password"
+          pattern=".{7,}"
+          title="Password must be at least 7 characters long"
+          required
+        />
+        <button>Sign up</button>
+      </Form>
     </Formik>
   );
 };
