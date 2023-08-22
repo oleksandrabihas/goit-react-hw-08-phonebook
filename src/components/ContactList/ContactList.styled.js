@@ -5,6 +5,7 @@ export const ContactsList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 10px;
+  
   li {
     max-width: 700px;
     height: auto;

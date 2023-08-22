@@ -1,7 +1,15 @@
 import { useDispatch } from 'react-redux';
-import { login } from 'redux/auth/operations';
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
+import {
+  Box,
+  Button,
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  Input,
+} from '@chakra-ui/react';
+import { login } from 'redux/auth/operations';
 
 const LoginSchema = yup.object({
   email: yup.string().required('Required'),
@@ -25,29 +33,56 @@ export const LoginForm = () => {
   };
 
   return (
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-      }}
-      onSubmit={handleSubmit}
-      validationSchema={LoginSchema}
-    >
-      <Form>
-        <label htmlFor="emailLogin">Email* </label>
-        <Field id="emailLogin" type="email" name="email" required />
-        <ErrorMessage name="email" />
-        <label htmlFor='passwordLogin'>Password*</label>
-        <Field
-          id="passwordLogin"
-          type="password"
-          name="password"
-          pattern=".{7,}"
-          title="Password must be at least 7 characters long"
-          required
-        />
-        <button>Log in</button>
-      </Form>
-    </Formik>
+    <Box mt="25">
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+        }}
+        onSubmit={handleSubmit}
+        validationSchema={LoginSchema}
+      >
+        <Form>
+          <Field name="email">
+            {({ field, form }) => (
+              <FormControl isInvalid={form.errors.email && form.touched.email}>
+                <FormLabel htmlFor="emailLogin">Email* </FormLabel>
+                <Input
+                  {...field}
+                  id="emailLogin"
+                  type="email"
+                  placeholder="Email"
+                  required
+                />
+                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+          <Field name="password">
+            {({ field, form }) => (
+              <FormControl
+                isInvalid={form.errors.password && form.touched.password}
+              >
+                <FormLabel htmlFor="passwordLogin">Password*</FormLabel>
+                <Input
+                  {...field}
+                  id="passwordLogin"
+                  type="password"
+                  pattern=".{7,}"
+                  title="Password must be at least 7 characters long"
+                  placeholder="Password"
+                  required
+                />
+                <FormErrorMessage>{form.errors.password}</FormErrorMessage>
+              </FormControl>
+            )}
+          </Field>
+
+          <Button type="submit" size="md" mt="5" colorScheme="green">
+            Log in
+          </Button>
+        </Form>
+      </Formik>
+    </Box>
   );
 };

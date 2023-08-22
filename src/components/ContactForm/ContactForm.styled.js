@@ -14,14 +14,8 @@ export const StyledForm = styled(Form)`
     width: 300px;
     height: 30px;
     margin-bottom: 8px;
+    border: 1px solid black;
+    border-radius: 4px;
   }
 
-  button {
-    display: block;
-    padding: 8px 20px;
-    font-size: 18px;
-    background-color: #e0a8d2;
-    border: 1px solid #841869;
-    border-radius: 5px;
-  }
 `;

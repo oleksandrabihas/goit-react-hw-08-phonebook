@@ -1,3 +1,9 @@
+import { Container } from "@chakra-ui/react";
+
 export default function ErrorPage() {
-    return <h2>Page is not found</h2>
+    return (
+      <Container>
+        <h2>Page is not found</h2>
+      </Container>
+    );
 }
