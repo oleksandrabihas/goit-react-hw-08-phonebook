@@ -2,7 +2,7 @@ import { Box, Container } from '@chakra-ui/react';
 import { Heading } from '@chakra-ui/react';
 import { Text } from '@chakra-ui/react';
 import { Link as ReactRouterLink } from 'react-router-dom';
-import { Link as ChakraLink} from '@chakra-ui/react';
+import { Link as ChakraLink } from '@chakra-ui/react';
 import { useSelector } from 'react-redux';
 import { selectIsAuth } from 'redux/auth/selectors';
 
@@ -31,13 +31,11 @@ export default function HomePage() {
                   as={ReactRouterLink}
                   to="/contacts"
                 >
-                  {' '}
                   contacts
                 </ChakraLink>
               </>
             ) : (
               <ChakraLink fontStyle="italic" as={ReactRouterLink} to="/logIn">
-                {' '}
                 login
               </ChakraLink>
             )}

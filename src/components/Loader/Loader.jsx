@@ -19,9 +19,6 @@ export const Loader = () => {
           color="#4fa94d"
           visible={true}
           ariaLabel="three-circles-rotating"
-          outerCircleColor="#841869"
-          innerCircleColor="#e0a8d2"
-          middleCircleColor="#841869"
         />
       </StyledLoader>
     )

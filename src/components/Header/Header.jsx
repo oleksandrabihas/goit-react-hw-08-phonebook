@@ -1,8 +1,10 @@
-import { Navigation } from "components/Navigation/Navigation";
+import { Box } from '@chakra-ui/react';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export const Header = () => {
-  return <header>
-    <Navigation/>
-    </header>
-
+  return (
+    <Box as="header" bg="white" boxShadow="lg" p="6" rounded="sx" mb="30px">
+      <Navigation />
+    </Box>
+  );
 };

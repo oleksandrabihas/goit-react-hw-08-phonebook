@@ -4,7 +4,7 @@ import { addContact } from 'redux/contacts/operations';
 import toast, { Toaster } from 'react-hot-toast';
 import { selectContacts } from 'redux/contacts/selectors';
 import { Formik, Field, Form } from 'formik';
-import { Button, FormControl, FormLabel, Input } from '@chakra-ui/react';
+import { Button, FormLabel } from '@chakra-ui/react';
 
 export const ContactForm = () => {
   const notify = () =>
@@ -43,7 +43,7 @@ export const ContactForm = () => {
           }}
           onSubmit={handleAddContact}
         >
-          {(props) => (
+          {props => (
             <StyledForm as={Form}>
               <FormLabel htmlFor="name">Name</FormLabel>
               <Field
@@ -63,11 +63,13 @@ export const ContactForm = () => {
                 title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
                 required
               />
-              <Button colorScheme="teal" size='lg' type="submit">Add contact</Button>
+              <Button colorScheme="telegram" size="lg" type="submit">
+                Add contact
+              </Button>
             </StyledForm>
           )}
         </Formik>
       </>
-    )
+    );
   
   }

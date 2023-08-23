@@ -30,7 +30,7 @@ export const RegisterForm = () => {
   };
 
   return (
-    <Box mt='25'>
+    <Box mt="25">
       <Formik
         initialValues={{ name: '', email: '', password: '' }}
         onSubmit={handleSubmit}

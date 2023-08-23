@@ -10,7 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectIsRefreshing } from 'redux/auth/selectors';
 import { Toaster } from 'react-hot-toast';
 
-const HomePage = lazy(() => import('pages/HomePage/HomePage'));
+const HomePage = lazy(() => import('pages/HomePage'));
 const RegisterPage = lazy(() => import('pages/RegisterPage'));
 const LoginPage = lazy(() => import('pages/LoginPage'));
 const ContactsPage = lazy(() => import('pages/ContactsPage'));
@@ -28,7 +28,7 @@ export const App = () => {
     <>
       <Loader />
       <ErrorNotification />
-      <Toaster/>
+      <Toaster />
       {isRefreshing ? (
         <h2>Refreshing page</h2>
       ) : (

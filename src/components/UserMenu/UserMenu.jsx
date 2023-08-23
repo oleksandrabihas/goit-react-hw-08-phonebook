@@ -1,23 +1,31 @@
-import { useDispatch, useSelector } from "react-redux"
-import { useNavigate } from "react-router-dom"; 
-import { logout } from "redux/auth/operations"
-import { selectUser } from "redux/auth/selectors"
+import { Box, Button, Text } from '@chakra-ui/react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { logout } from 'redux/auth/operations';
+import { selectUser } from 'redux/auth/selectors';
 
 export const UserMenu = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector(selectUser);
 
-    const navigate = useNavigate()
-    const dispatch = useDispatch()
-    const user = useSelector(selectUser)
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate('/logIn');
+  };
 
-    const handleLogout= () => {
-        dispatch(logout());
-        navigate('/logIn')
-    }
-
-    return (
-      <div>
-        <p>{user?.email}</p>
-        <button onClick={handleLogout}>Logout</button>
-      </div>
-    );
-}
+  return (
+    <Box
+      ml="auto"
+      display="flex"
+      justifyContent="center"
+      alignItems="baseline"
+      gap="5"
+    >
+      <Text fontSize="18">{user?.email}</Text>
+      <Button colorScheme="telegram" variant="outline" onClick={handleLogout}>
+        Logout
+      </Button>
+    </Box>
+  );
+};

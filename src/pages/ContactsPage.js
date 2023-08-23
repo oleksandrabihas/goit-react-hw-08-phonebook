@@ -7,11 +7,11 @@ import { useDispatch } from 'react-redux';
 import { Container, Heading } from '@chakra-ui/react';
 
 export default function ContactsPage() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-    useEffect(() => {
-      dispatch(fetchContacts());
-    }, [dispatch]);
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
 
   return (
     <Container>
@@ -25,7 +25,13 @@ export default function ContactsPage() {
         Phonebook
       </Heading>
       <ContactForm />
-      <Heading as="h2" fontSize="2xl" fontWeight="400" textAlign="center" mb='5'>
+      <Heading
+        as="h2"
+        fontSize="2xl"
+        fontWeight="400"
+        textAlign="center"
+        mb="5"
+      >
         Contacts:
       </Heading>
       <Filter />

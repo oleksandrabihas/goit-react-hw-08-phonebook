@@ -1,24 +1,52 @@
+import { Link as ReactRouterLink } from 'react-router-dom';
+import { Box, Container, Link as ChakraLink, Button } from '@chakra-ui/react';
+
 import { UserMenu } from 'components/UserMenu/UserMenu';
 import { useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
 import { selectIsAuth } from 'redux/auth/selectors';
 
 export const Navigation = () => {
-    const isAuth = useSelector(selectIsAuth)
+  const isAuth = useSelector(selectIsAuth);
   return (
-    <nav>
-      <NavLink to="/">Home</NavLink>
-      {isAuth ? (
-        <>
-          <NavLink to="/contacts">Contacts</NavLink>
-          <UserMenu />
-        </>
-      ) : (
-        <>
-          <NavLink to="/signUp">Sign up</NavLink>
-          <NavLink to="/logIn">Log in</NavLink>
-        </>
-      )}
-    </nav>
+    <Container>
+      <Box
+        as="nav"
+        display="flex"
+        alignItems="center"
+        justifyContent="start"
+        gap="15"
+      >
+        <ChakraLink fontSize="21" as={ReactRouterLink} to="/">
+          Home
+        </ChakraLink>
+        {isAuth ? (
+          <>
+            <ChakraLink fontSize="20" as={ReactRouterLink} to="/contacts">
+              Contacts
+            </ChakraLink>
+            <UserMenu />
+          </>
+        ) : (
+          <Box display="flex" gap="10" ml="auto">
+            <Button
+              as={ReactRouterLink}
+              colorScheme="green"
+              variant="outline"
+              to="/signUp"
+            >
+              Sign up
+            </Button>
+            <Button
+              colorScheme="green"
+              variant="outline"
+              as={ReactRouterLink}
+              to="/logIn"
+            >
+              Log in
+            </Button>
+          </Box>
+        )}
+      </Box>
+    </Container>
   );
 };

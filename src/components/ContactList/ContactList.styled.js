@@ -13,13 +13,4 @@ export const ContactsList = styled.ul`
     justify-content: space-between;
 
   }
-  button {
-    display: block;
-    padding: 4px 15px;
-    font-size: 14px;
-    background-color: #f7f7f8;
-
-    border: 1px solid #9191b4;
-    border-radius: 5px;
-  }
 `;
